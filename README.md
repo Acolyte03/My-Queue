@@ -8,22 +8,23 @@
 - [Description](#description)
 - [Screenshots](#screenshots)
 - [Usage](#usage)
-- [What I Have Learned](#what-i-have-learned)
+- [What We Have Learned](#what-i-have-learned)
 - [Credits](#credits)
 - [Licenses](#licenses)
 </br>
 
 ## Description
-A full-stack application that is perfect for finding new shows to watch and adding them to a watch list and viewing other user's comments about the show.
+A full-stack application that is perfect for finding new shows to watch, </br> 
+adding them to a watch list, and viewing other users' comments about the show. </br> 
 
 ## Screenshots
----Insert stuff here---
+---Insert stuff here--- </br> 
 
 ## Usage
 Simply click on the link and watch the magic happen. </br>  
 Link to the website: --- </br>
 
-## What I Have Learned
+## What We Have Learned
 ---Insert stuff here---
 
 ## Credits

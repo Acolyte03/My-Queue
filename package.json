@@ -1,0 +1,39 @@
+{
+  "name": "my-queue",
+  "version": "1.0.0",
+  "description": "TV show watch list for users to add their shows to, and review.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Acolyte03/My-Queue.git"
+  },
+  "keywords": [
+    "my",
+    "queue",
+    "tv",
+    "show",
+    "watch",
+    "list",
+    "project",
+    "2"
+  ],
+  "author": "Aeryk Andrews, Allie Stewart, Chris Valada, Devon Capps",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Acolyte03/My-Queue/issues"
+  },
+  "homepage": "https://github.com/Acolyte03/My-Queue#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.6.3",
+    "sequelize": "^6.34.0"
+  }
+}

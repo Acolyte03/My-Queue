@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const userRoutes = require('./userRoutes');
+
+router.use('/users', userRoutes);
 // figure out routes here
 // const <route> = require('/<route>');
 
@@ -6,3 +9,4 @@ const router = require('express').Router();
 // Routes are based on Models
 
 module.exports = router;
+

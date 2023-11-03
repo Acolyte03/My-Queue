@@ -36,7 +36,7 @@ TVShow.init(
             type: DataTypes.STRING,
             references: {
                 model: 'genre',
-                key: '',
+                key: 'id',
             }
         }
     },

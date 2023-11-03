@@ -14,4 +14,4 @@ const Genre = require('./Genre');
 //   foreignKey: 'user_id'
 // }); 
 
-module.exports = { User, TVShow, Genre };
+module.exports = { User, TVShow, Genre }; 

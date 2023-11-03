@@ -8,4 +8,4 @@ router.use('/genre', genreRoutes);
 router.use('/user', userRoutes);
 // Routes are based on Models 
 
-module.exports = router;
+module.exports = router; 

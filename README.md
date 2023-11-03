@@ -22,7 +22,7 @@ adding them to a watch list, and viewing other users' comments about the show. <
 
 ## Usage
 Simply click on the link and watch the magic happen. </br>  
-Link to the website: --- </br>
+Link to the website: ---- </br>
 
 ## What We Have Learned
 ---Insert stuff here---

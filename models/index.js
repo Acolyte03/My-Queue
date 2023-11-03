@@ -12,6 +12,6 @@ const Genre = require('./Genre');
 
 // Project.belongsTo(User, {
 //   foreignKey: 'user_id'
-// });
+// }); 
 
 module.exports = { User, TVShow, Genre };

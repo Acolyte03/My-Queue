@@ -1,40 +1,40 @@
 const router = require('express').Router();
-const { TVShow, Watchlist } = require('../../models');
+const { Review, TVShow } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// GET all TV shows?...
+// GET all reviews (for a TVShow)
 router.get('/', async (req, res) => {
-    await TVShow.findAll({})
-        .then(tvShowData => res.json(tvShowData))
+    await Review.findAll({}) // hmmm...
+        .then(reviewData => res.json(reviewData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         })
 });
 
-// GET TV show by id (or watchlist?)
+// GET review by id
 router.get('/:id', async (req, res) => {
-    await TVShow.findAll({
+    await Review.findAll({
             where: {
                 id: req.params.id
             }
         })
-        .then(tvShowData => res.json(tvShowData))
+        .then(reviewData => res.json(reviewData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         })
 });
 
-// CREATE TV show... Watchlist?
+// CREATE review
 router.post('/', withAuth, async (req, res) => {
     if (req.session) {
-        await Watchlist.create({
-                name: req.body.name,
+        await Review.create({
+                comment: req.body.comment,
                 tv_show_id: req.body.tv_show_id,
                 user_id: req.session.user_id,
             })
-            .then(tvShowData => res.json(tvShowData))
+            .then(reviewData => res.json(reviewData))
             .catch(err => {
                 console.log(err);
                 res.status(400).json(err);
@@ -42,38 +42,38 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
-// UPDATE TV show (in watchlist)
+// UPDATE review
 router.put('/:id', withAuth, async (req, res) => {
-    await Watchlist.update({
-        name: req.body.name // may need to adjust
+    await Review.update({
+        comment: req.body.comment
     }, {
         where: {
-            tv_show_id: req.params.tv_show_id
+            id: req.params.id
         }
-    }).then(tvShowData => {
-        if (!tvShowData) {
-            res.status(404).json({ message: 'No tv show found with this id.' });
+    }).then(reviewData => {
+        if (!reviewData) {
+            res.status(404).json({ message: 'No review found with this id.' });
             return;
         }
-        res.json(tvShowData);
+        res.json(reviewData);
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
 });
 
-// DELETE TV show by id (in watchlist)
+// DELETE review by id
 router.delete('/:id', withAuth, async (req, res) => {
-    await Watchlist.destroy({
+    await Review.destroy({
         where: {
-            tv_show_id: req.params.tv_show_id
+            id: req.params.id
         }
-    }).then(tvShowData => {
-        if (!tvShowData) {
-            res.status(404).json({ message: 'No tv show found with this id.' });
+    }).then(reviewData => {
+        if (!reviewData) {
+            res.status(404).json({ message: 'No review found with this id.' });
             return;
         }
-        res.json(tvShowData);
+        res.json(reviewData);
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);

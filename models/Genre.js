@@ -11,7 +11,7 @@ Genre.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        genre_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },

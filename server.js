@@ -42,8 +42,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-<<<<<<< HEAD
-=======
 // Database connection configuration using environment variables
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -60,7 +58,6 @@ connection.connect(err => {
   }
   console.log('Connected to the database');
 
->>>>>>> 292e5c3d1fd261e3463bcb76fd1c6b0975dc4bbb
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });

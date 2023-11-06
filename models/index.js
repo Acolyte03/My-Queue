@@ -1,9 +1,12 @@
 const User = require('./User');
 const TVShow = require('./TVShow');
 const Genre = require('./Genre');
+const Review = require('./Review');
 
-// Figure out how User is connected to TVShow,
-// TVShow is connected to Genre
+// User hasMany Review, TVShow
+// TVShow hasMany Genre, Review
+// Review belongsTo User, TVShow
+// Make sure logic connects.
 
 // User.hasMany(Project, {
 //   foreignKey: 'user_id',
@@ -14,4 +17,4 @@ const Genre = require('./Genre');
 //   foreignKey: 'user_id'
 // }); 
 
-module.exports = { User, TVShow, Genre }; 
+module.exports = { User, TVShow, Genre, Review }; 

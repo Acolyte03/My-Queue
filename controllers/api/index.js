@@ -1,8 +1,14 @@
 const router = require('express').Router();
-// figure out routes here
-// const <route> = require('/<route>');
+const tvShowRoutes = require('./tvShowRoutes');
+const genreRoutes = require('./genreRoutes');
+const userRoutes = require('./userRoutes');
+const reviewRoutes = require('./reviewRoutes');
 
-// router.use('/<name>', <const route>);
-// Routes are based on Models
+router.use('/tvshows', tvShowRoutes);
+router.use('/genres', genreRoutes);
+router.use('/users', userRoutes);
+router.use('/reviews', reviewRoutes);
+// Routes are based on Models 
 
 module.exports = router;
+

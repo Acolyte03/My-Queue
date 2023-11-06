@@ -1,0 +1,11 @@
+<!-- partials/tvshowCard.handlebars -->
+<div class="col-md-4 mb-3">
+    <div class="card h-100">
+        <img src="{{this.image}}" class="card-img-top" alt="{{this.title}}">
+        <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <p class="card-text">{{this.overview}}</p>
+            <button class="btn btn-primary addToWatchlist" data-id="{{this.id}}">Add to Watchlist</button>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,9 @@ Watchlist.init(
         primaryKey: true,
         autoIncrement: true,
     },
+    name: {
+        type: DataTypes.STRING,
+    },
     user_id: {
         type: DataTypes.INTEGER,
         references: {

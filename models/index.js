@@ -2,24 +2,6 @@ const User = require('./User');
 const TVShow = require('./TVShow');
 const Genre = require('./Genre');
 const Review = require('./Review');
-<<<<<<< HEAD
-
-// User hasMany Review, TVShow
-// TVShow hasMany Genre, Review
-// Review belongsTo User, TVShow
-// Make sure logic connects.
-
-// User.hasMany(Project, {
-//   foreignKey: 'user_id',
-//   onDelete: 'CASCADE'
-// });
-
-// Project.belongsTo(User, {
-//   foreignKey: 'user_id'
-// }); 
-
-module.exports = { User, TVShow, Genre, Review }; 
-=======
 const Watchlist = require('./Watchlist');
 
 User.hasMany(Review, {
@@ -60,4 +42,3 @@ User.belongsToMany(TVShow, {
 });
 
 module.exports = { User, TVShow, Genre, Review, Watchlist }; 
->>>>>>> 292e5c3d1fd261e3463bcb76fd1c6b0975dc4bbb

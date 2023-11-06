@@ -2,6 +2,10 @@ const seedGenres = require('./genreSeeds');
 const seedReviews = require('./reviewSeeds');
 const seedShows = require('./showSeeds');
 const seedUsers = require('./userSeeds');
+<<<<<<< HEAD
+=======
+const seedWatchlists = require('./watchlistSeeds');
+>>>>>>> 292e5c3d1fd261e3463bcb76fd1c6b0975dc4bbb
 
 const sequelize = require('../config/connection');
 
@@ -21,6 +25,12 @@ const seedAll = async () => {
   await seedUsers();
   console.log('\n----- USERS SEEDED -----\n');
 
+<<<<<<< HEAD
+=======
+  await seedWatchlists();
+  console.log('\n----- WATCHLISTS SEEDED -----\n');
+
+>>>>>>> 292e5c3d1fd261e3463bcb76fd1c6b0975dc4bbb
   process.exit(0);
 };
 

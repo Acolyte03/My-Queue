@@ -42,6 +42,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
+<<<<<<< HEAD
+=======
+// Database connection configuration using environment variables
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+});
+
+// Connect to the database
+connection.connect(err => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    return;
+  }
+  console.log('Connected to the database');
+
+>>>>>>> 292e5c3d1fd261e3463bcb76fd1c6b0975dc4bbb
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
+});
 });

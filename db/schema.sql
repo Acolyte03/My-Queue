@@ -8,20 +8,18 @@ USE tvshow_db;
 CREATE TABLE tv_shows (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    description TEXT,
-    tagline VARCHAR(255),
     number_of_seasons INT,
     number_of_episodes INT,
     vote_count INT,
     vote_average FLOAT,
-    popularity FLOAT,
     overview TEXT,
     homepage VARCHAR(255),
     in_production BOOLEAN,
+	popularity FLOAT,
     tagline VARCHAR(255),
+    genres VARCHAR(255),
     created_by VARCHAR(255),
     networks VARCHAR(255),
-    genres VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

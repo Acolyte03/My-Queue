@@ -5,15 +5,15 @@ const withAuth = require('../../utils/auth');
 // GET all reviews (for a TVShow)
 router.get('/', async (req, res) => {
     await Review.findAll({
-        attributes: ["id", "comment", "user_id", "tv_show_id"],
-        include: [
-            { 
-              model: TVShow,
-              attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks"]
-            }
-        ]
+        //attributes: ["id", "comment", "user_id", "tv_show_id"],
+        // include: [
+        //     { 
+        //       model: TVShow,
+        //       attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
+        //       "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+        //       "genres", "created_by", "networks"]
+        //     }
+        // ]
     })
         .then(reviewData => res.json(reviewData))
         .catch(err => {
@@ -28,14 +28,14 @@ router.get('/:id', async (req, res) => {
             where: {
                 id: req.params.id
             },
-            include: [
-                { 
-                  model: TVShow,
-                  attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-                  "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-                  "genres", "created_by", "networks"]
-                }
-            ]
+            // include: [
+            //     { 
+            //       model: TVShow,
+            //       attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
+            //       "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+            //       "genres", "created_by", "networks"]
+            //     }
+            // ]
         })
         .then(reviewData => res.json(reviewData))
         .catch(err => {

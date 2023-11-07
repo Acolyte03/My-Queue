@@ -44,11 +44,11 @@ router.post('/', withAuth, async (req, res) => {
 
 // UPDATE TV show (in watchlist)
 router.put('/:id', withAuth, async (req, res) => {
-    await Watchlist.update({
+    await TVShow.update({
         name: req.body.name // may need to adjust
     }, {
         where: {
-            tv_show_id: req.params.tv_show_id
+            id: req.params.id
         }
     }).then(tvShowData => {
         if (!tvShowData) {

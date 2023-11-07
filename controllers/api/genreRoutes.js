@@ -6,13 +6,13 @@ const withAuth = require('../../utils/auth');
 router.get('/', async (req, res) => {
       await Genre.findAll( 
       {
-        attributes: ["id", "genre_name"],
-        include: [{
-          model: TVShow,
-          attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-        "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-        "genres", "created_by", "networks"]
-        }]
+        // attributes: ["id", "genre_name"],
+        // include: [{
+        //   model: TVShow,
+        //   attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
+        // "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+        // "genres", "created_by", "networks"]
+        // }]
       }).then((genres) => {
         res.json(genres);
       }).catch ((err) =>
@@ -25,14 +25,14 @@ router.get('/', async (req, res) => {
   router.get('/:id', async (req, res) => {
       await Genre.findByPk(req.params.id, 
       {
-        attributes: ["id", "genre_name"],
-        include: [
-          { 
-            model: TVShow,
-            attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-        "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-        "genres", "created_by", "networks"]
-          }],
+        // attributes: ["id", "genre_name"],
+        // include: [
+        //   { 
+        //     model: TVShow,
+        //     attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
+        // "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+        // "genres", "created_by", "networks"]
+        //   }],
       }).then((genreData) => {
         if (!genreData) 
         {

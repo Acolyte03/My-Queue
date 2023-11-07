@@ -49,8 +49,9 @@ router.post('/', withAuth, async (req, res) => {
     if (req.session) {
         await Review.create({
                 comment: req.body.comment,
-                tv_show_id: req.body.tv_show_id,
                 user_id: req.session.user_id,
+                tv_show_id: req.body.tv_show_id,
+
             })
             .then(reviewData => res.json(reviewData))
             .catch(err => {

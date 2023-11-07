@@ -1,6 +1,7 @@
 const seedGenres = require('./genreSeeds');
 const seedReviews = require('./reviewSeeds');
 const seedShows = require('./showSeeds');
+// const fs = require('fs');
 const seedUsers = require('./userSeeds');
 const seedWatchlists = require('./watchlistSeeds');
 
@@ -24,6 +25,10 @@ const seedAll = async () => {
 
   await seedWatchlists();
   console.log('\n----- WATCHLISTS SEEDED -----\n');
+
+  // await fs.readFileSync('./TVShowDataSet.json');
+  // JSON.parse(showRead); 
+  // console.log('\n----- TV SHOWS SEEDED -----\n');
 
   process.exit(0);
 };

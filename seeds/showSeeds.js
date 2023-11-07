@@ -6,8 +6,8 @@ const tvShowData = [
         id: 1,
         name: "Example",
         number_of_seasons: 5,
-        number_of_episodes: 265,
-        vote_count: 15616,
+        number_of_episodes: 35,
+        vote_count: 156,
         vote_average: 8.235,
         overview: "",
         homepage: "",
@@ -17,6 +17,11 @@ const tvShowData = [
         genres: "",
         created_by: "",
         networks: "",
+        origin_country: "CA", 
+        spoken_languages:"English", 
+        production_companies:"Shaw Media, World 2000 Entertainment, Take 5 Productions",
+        production_countries:"Canada, Ireland",
+        episode_run_time: 44
     },
 ];
 

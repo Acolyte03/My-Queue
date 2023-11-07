@@ -11,22 +11,22 @@ Review.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-              model: 'user',
-              key: 'id',
-            },
-        },
         comment: {
             type: DataTypes.STRING,
         },
-        tvshow_id: {
+        user_id: {
             type: DataTypes.INTEGER,
-            references: {
-              model: 'tvshow',
-              key: 'id',
-            },
+            // references: {
+            //   model: 'user',
+            //   key: 'id',
+            // },
+        },
+        tv_show_id: {
+            type: DataTypes.INTEGER,
+            // references: {
+            //   model: 'tvshow',
+            //   key: 'id',
+            // },
         },
     },
     {

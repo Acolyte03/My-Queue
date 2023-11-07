@@ -11,19 +11,19 @@ Genre.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        genre_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
         description: {
             type: DataTypes.STRING,
         },
-        tvshow_id: {
+        tv_show_id: {
             type: DataTypes.INTEGER,
-            references: {
-              model: 'tvshow',
-              key: 'id',
-            },
+            // references: {
+            //   model: 'tvshow',
+            //   key: 'id',
+            // },
         },
     },
     {

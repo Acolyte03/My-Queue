@@ -29,13 +29,14 @@
   "homepage": "https://github.com/Acolyte03/My-Queue#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
     "express-session": "^1.17.3",
     "gsap": "^3.12.2",
-    "mysql2": "^3.6.3",
-    "sequelize": "^6.34.0"
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.5"

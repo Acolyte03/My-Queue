@@ -31,7 +31,7 @@ TVShow.init(
             type: DataTypes.STRING,
         },
         in_production: {
-            type: DataType.boolean,
+            type: DataTypes.BOOLEAN,
         },
         popularity: {
             type: DataTypes.FLOAT,
@@ -39,13 +39,12 @@ TVShow.init(
         tagline: {
             type: DataTypes.STRING,
         },
-        
         genres: {
             type: DataTypes.STRING,
-            references: {
-                model: 'genre',
-                key: 'id',
-            }
+            // references: {
+            //     model: 'genre',
+            //     key: 'id',
+            // }
         },
         created_by: {
             type: DataTypes.STRING,

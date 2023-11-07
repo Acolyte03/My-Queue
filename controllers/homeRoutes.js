@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     const watchlists = watchlistData.map((watchlist) => watchlist.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
+    res.render('main', { 
       watchlists, 
       logged_in: req.session.logged_in 
     });

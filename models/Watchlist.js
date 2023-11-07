@@ -21,7 +21,7 @@ Watchlist.init(
           key: 'id',
         },
     },
-    tvshow_id: {
+    tv_show_id: {
         type: DataTypes.INTEGER,
         references: {
           model: 'tvshow',

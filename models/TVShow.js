@@ -31,7 +31,7 @@ TVShow.init(
             type: DataTypes.STRING,
         },
         in_production: {
-            type: DataType.boolean,
+            type: DataTypes.BOOLEAN,
         },
         popularity: {
             type: DataTypes.FLOAT,
@@ -39,7 +39,6 @@ TVShow.init(
         tagline: {
             type: DataTypes.STRING,
         },
-        
         genres: {
             type: DataTypes.STRING,
             references: {

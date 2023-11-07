@@ -2,14 +2,14 @@ const { Genre } = require('../models');
 
 const genreData = [
     {
-        id: 34235,
-        name: "Fantasy",
+        id: 1,
+        genre_name: "Fantasy",
         description: "Medieval stuff and magic sometimes",
-        tvshow_id: 31311
+        tv_show_id: 1
     },
 ];
 
 const seedGenres = () => Genre.bulkCreate(genreData);
 
 module.exports = seedGenres;
-// Example placeholder;
+// Example placeholder

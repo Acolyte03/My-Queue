@@ -16,17 +16,17 @@ Review.init(
         },
         user_id: {
             type: DataTypes.INTEGER,
-            references: {
-              model: 'user',
-              key: 'id',
-            },
+            // references: {
+            //   model: 'user',
+            //   key: 'id',
+            // },
         },
-        tvshow_id: {
+        tv_show_id: {
             type: DataTypes.INTEGER,
-            references: {
-              model: 'tvshow',
-              key: 'id',
-            },
+            // references: {
+            //   model: 'tvshow',
+            //   key: 'id',
+            // },
         },
     },
     {

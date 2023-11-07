@@ -3,7 +3,7 @@ const { TVShow } = require('../models');
 
 const tvShowData = [
     {
-        id: 14141,
+        id: 1,
         name: "Example",
         number_of_seasons: 5,
         number_of_episodes: 265,

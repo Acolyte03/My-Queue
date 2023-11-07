@@ -2,14 +2,14 @@ const { Review } = require('../models');
 
 const reviewData = [
     {
-        id: 231,
-        user_id: 9591,
+        id: 1,
         comment: "This show is bad and you should feel bad.",
-        tv_show_id: 985905
+        user_id: 2,
+        tv_show_id: 2
     },
 ];
 
 const seedReviews = () => Review.bulkCreate(reviewData);
 
 module.exports = seedReviews;
-// Example placeholder;
+// Example placeholder

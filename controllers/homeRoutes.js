@@ -1,7 +1,7 @@
 // Start of JS file
 // Home page routes. For someone NOT logged in to view.
 const router = require('express').Router();
-const { Genre, User, Review, TVShow } = require('../models');
+const { Genre, User, Review, TVShow, Watchlist } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Need to implement Genres here
@@ -19,7 +19,12 @@ router.get('/', async (req, res) => {
             model: TVShow,
             attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
               "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks"],
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
+            include: {
+                model: User,
+                attributes: ['username']
+            }
         },
     ]
 })
@@ -49,7 +54,8 @@ router.get('/reviews/:id', async (req, res) => {
             model: TVShow,
             attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
               "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks"],
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
             include: {
                 model: User,
                 attributes: ['username']
@@ -91,7 +97,8 @@ router.get('/reviews-shows', async (req, res) => {
                 model: TVShow,
                 attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
               "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks"],
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -117,10 +124,9 @@ router.get('/reviews-shows', async (req, res) => {
     });
 });
 
-// Not sure if we need this yet, maybe for a look to a watchlist?
-// Would have to go in /dashboardRoutes
+// Watchlist attached to user?
 // Use withAuth middleware to prevent access to route
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/watchlist', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -130,7 +136,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
-    res.render('profile', {
+    res.render('watchlist', {
       ...user,
       logged_in: true
     });

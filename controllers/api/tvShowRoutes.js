@@ -45,7 +45,12 @@ router.post('/', withAuth, async (req, res) => {
             tagline: req.body.tagline,
             genres: req.body.genres,
             created_by: req.body.created_by,
-            networks: req.body.networks
+            networks: req.body.networks,
+            origin_country: req.body.origin_country,
+            spoken_languages: req.body.spoken_languages,
+            production_companies: req.body.production_companies,
+            production_countries: req.body.production_countries,
+            episode_run_time: req.body.episode_run_time,
             })
             .then(tvShowData => res.json(tvShowData))
             .catch(err => {
@@ -58,7 +63,24 @@ router.post('/', withAuth, async (req, res) => {
 // UPDATE TV show
 router.put('/:id', withAuth, async (req, res) => {
     await TVShow.update({
-        name: req.body.name
+        name: req.body.name,
+        number_of_seasons: req.body.number_of_seasons,
+        number_of_episodes: req.body.number_of_episodes,
+        vote_count: req.body.vote_count,
+        vote_average: req.body.vote_average,
+        overview: req.body.overview,
+        homepage: req.body.homepage,
+        in_production: req.body.in_production,
+        popularity: req.body.popularity,
+        tagline: req.body.tagline,
+        genres: req.body.genres,
+        created_by: req.body.created_by,
+        networks: req.body.networks,
+        origin_country: req.body.origin_country,
+        spoken_languages: req.body.spoken_languages,
+        production_companies: req.body.production_companies,
+        production_countries: req.body.production_countries,
+        episode_run_time: req.body.episode_run_time,
     }, {
         where: {
             id: req.params.id

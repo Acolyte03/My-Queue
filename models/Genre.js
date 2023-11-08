@@ -14,17 +14,15 @@ Genre.init(
         genre_name: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        description: {
-            type: DataTypes.TEXT,
-        },
-        tv_show_id: {
-            type: DataTypes.INTEGER,
-            references: {
-              model: 'tvshow',
-              key: 'id',
-            },
-        },
+        }
+        // tv_show_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //       model: 'tvshow',
+        //       key: 'id',
+        //     },
+        //     unique: false,
+        // },
     },
     {
         sequelize,

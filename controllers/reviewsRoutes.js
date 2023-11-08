@@ -1,12 +1,12 @@
 // Start of JS file
-// Dashboard page routes. For someone who IS logged in to view.
+// Review page routes. For someone who IS logged in to view.
 const router = require('express').Router();
 const { Genre, User, Review, TVShow, Watchlist } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Need to implement Genres and Watchlist here
 
-// GET all reviews -> dashboard page
+// GET all reviews -> reviews page
 router.get('/', withAuth, async (req, res) => {
     await Review.findAll({
             where: {
@@ -21,7 +21,8 @@ router.get('/', withAuth, async (req, res) => {
                     model: TVShow,
                     attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
               "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks"],
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
                     include: {
                         model: User,
                         attributes: ['username']
@@ -35,7 +36,7 @@ router.get('/', withAuth, async (req, res) => {
         })
         .then(reviewData => {
             const reviews = reviewData.map(review => review.get({ plain: true }));
-            res.render('dashboard', { reviews, loggedIn: true });
+            res.render('reviews', { reviews, loggedIn: true });
         })
         .catch(err => {
             console.log(err);
@@ -60,8 +61,9 @@ router.get('/edit/:id', withAuth, async (req, res) => {
                 {
                     model: TVShow,
                     attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-                    "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-                    "genres", "created_by", "networks"],
+              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
                     include: {
                         model: User,
                         attributes: ['username']

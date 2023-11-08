@@ -1,7 +1,7 @@
 // Start of JS file
 // GenreRoutes for GET, POST, PUT, DELETE of genres.
 const router = require('express').Router();
-const { Genre, TVShow } = require('../../models');
+const { Genre } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET all genres

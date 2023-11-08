@@ -6,7 +6,7 @@ const withAuth = require('../utils/auth');
 
 // Need to implement Genres here
 
-// GET all reviews -> homepage
+// GET all reviews -> main
 router.get('/', async (req, res) => {
   await Review.findAll({
     attributes: [
@@ -125,25 +125,25 @@ router.get('/reviews-shows', async (req, res) => {
 
 // Not sure if we need this yet, maybe for a look to a watchlist?
 // Would have to go in /dashboardRoutes
-// // Use withAuth middleware to prevent access to route
-// router.get('/profile', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Watchlist }],
-//     });
+// Use withAuth middleware to prevent access to route
+router.get('/profile', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Watchlist }],
+    });
 
-//     const user = userData.get({ plain: true });
+    const user = userData.get({ plain: true });
 
-//     res.render('profile', {
-//       ...user,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.render('profile', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // GET login route -> login
 router.get('/login', (req, res) => {

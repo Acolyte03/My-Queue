@@ -16,10 +16,10 @@ Review.init(
         },
         user_id: {
             type: DataTypes.INTEGER,
-            references: {
-              model: 'user',
-              key: 'id',
-            },
+            // references: {
+            //   model: 'user',
+            //   key: 'id',
+            // },
         },
         tv_show_id: {
             type: DataTypes.INTEGER,
@@ -27,6 +27,9 @@ Review.init(
               model: 'tvshow',
               key: 'id',
             },
+        },
+        created_at: {
+            type: DataTypes.STRING,
         },
     },
     {

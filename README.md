@@ -1,8 +1,20 @@
 # Show-Watchlist
+## Description
+A full-stack application that is perfect for finding new shows to watch, </br> 
+adding them to a watch list, and viewing other users' comments about the show. </br> 
 
-## Badge
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
-</br>
+## Badges
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![License: MIT](https://img.shields.io/badge/Version-1.0-yellow.svg)
+![License: MIT](https://img.shields.io/badge/Javascript-yellow.svg)
+![License: MIT](https://img.shields.io/badge/HTML5-red.svg)
+![License: MIT](https://img.shields.io/badge/CSS-purple.svg)
+![License: MIT](https://img.shields.io/badge/Handlebars-orange.svg)
+![License: MIT](https://img.shields.io/badge/Tailwind-grey.svg)
+![License: MIT](https://img.shields.io/badge/Node.js-grey.svg)
+![License: MIT](https://img.shields.io/badge/Express.js-grey.svg)
+![License: MIT](https://img.shields.io/badge/MySQL-purple.svg)
+![License: MIT](https://img.shields.io/badge/Heroku-purple.svg)
 
 ## Table of Contents
 - [Description](#description)
@@ -12,10 +24,6 @@
 - [Credits](#credits)
 - [Licenses](#licenses)
 </br>
-
-## Description
-A full-stack application that is perfect for finding new shows to watch, </br> 
-adding them to a watch list, and viewing other users' comments about the show. </br> 
 
 ## Screenshots
 ---Insert stuff here--- </br> 

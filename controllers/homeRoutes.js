@@ -8,6 +8,7 @@ const withAuth = require('../utils/auth');
 
 // GET all reviews -> main
 router.get('/', async (req, res) => {
+  console.log(res);
   await Review.findAll({
     attributes: [
         'id',
@@ -19,20 +20,13 @@ router.get('/', async (req, res) => {
             attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
               "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
               "genres", "created_by", "networks"],
-            include: {
-                model: User,
-                attributes: ['username']
-            }
         },
-        {
-            model: User,
-            attributes: ['username']
-        }
     ]
 })
 .then(reviewData => {
+    console.log('test: ', reviewData);
     const reviews = reviewData.map(review => review.get({ plain: true }));
-    res.render('homepage', { reviews, loggedIn: req.session.loggedIn });
+    res.render('main', {reviews, loggedIn: req.session.loggedIn});
 })
 .catch(err => {
     console.log(err);
@@ -158,6 +152,10 @@ router.get('/login', (req, res) => {
 router.get('/signup', (req, res) => {
   res.render('signup');
 });
+
+// router.get('/main', (req, res) => {
+//   res.render('main');
+// });
 
 module.exports = router;
 // End of JS file

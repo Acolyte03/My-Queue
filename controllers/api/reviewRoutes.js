@@ -7,7 +7,7 @@ const withAuth = require('../../utils/auth');
 // GET all reviews (for a TVShow)
 router.get('/', async (req, res) => {
     await Review.findAll({
-        attributes: ['id', 'comment', 'created_at'],
+        attributes: ['id', 'title', 'comment', 'created_at'],
         include: [
             {
                 model: User,
@@ -17,7 +17,8 @@ router.get('/', async (req, res) => {
               model: TVShow,
               attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
               "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks"],
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
               include: {
                 model: User,
                 attributes: ['username']
@@ -38,7 +39,7 @@ router.get('/:id', async (req, res) => {
             where: {
                 id: req.params.id
             },
-            attributes: ['id', 'comment', 'created_at'],
+            attributes: ['id', 'title', 'comment', 'created_at'],
             include: [
                 {
                     model: User,
@@ -47,8 +48,9 @@ router.get('/:id', async (req, res) => {
                 { 
                   model: TVShow,
                   attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-                  "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-                  "genres", "created_by", "networks"],
+              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
                   include: {
                     model: User,
                     attributes: ['username']
@@ -71,6 +73,7 @@ router.get('/:id', async (req, res) => {
 // CREATE review
 router.post('/', withAuth, async (req, res) => {
         await Review.create({
+                title: req.body.title,
                 comment: req.body.comment,
                 user_id: req.session.user_id,
                 tv_show_id: req.body.tv_show_id
@@ -85,6 +88,7 @@ router.post('/', withAuth, async (req, res) => {
 // UPDATE review
 router.put('/:id', withAuth, async (req, res) => {
     await Review.update({
+        title: req.body.title,
         comment: req.body.comment
     }, {
         where: {

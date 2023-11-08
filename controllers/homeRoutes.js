@@ -18,7 +18,8 @@ router.get('/', async (req, res) => {
             model: TVShow,
             attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
               "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks"],
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
             include: {
                 model: User,
                 attributes: ['username']
@@ -55,7 +56,8 @@ router.get('/reviews/:id', async (req, res) => {
             model: TVShow,
             attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
               "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks"],
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
             include: {
                 model: User,
                 attributes: ['username']
@@ -97,7 +99,8 @@ router.get('/reviews-shows', async (req, res) => {
                 model: TVShow,
                 attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
               "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks"],
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
                 include: {
                     model: User,
                     attributes: ['username']

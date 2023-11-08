@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 .then(reviewData => {
     console.log('test: ', reviewData);
     const reviews = reviewData.map(review => review.get({ plain: true }));
-    res.render('main', {reviews, loggedIn: req.session.loggedIn});
+    res.render('layouts/main', {reviews, loggedIn: req.session.loggedIn});
 })
 .catch(err => {
     console.log(err);

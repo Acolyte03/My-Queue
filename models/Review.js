@@ -26,13 +26,10 @@ Review.init(
         },
         tv_show_id: {
             type: DataTypes.INTEGER,
-            references: {
-              model: 'tvshow',
-              key: 'id',
-            },
-        },
-        created_at: {
-            type: DataTypes.STRING,
+            // references: {
+            //   model: 'tvshow',
+            //   key: 'id',
+            // },
         },
     },
     {

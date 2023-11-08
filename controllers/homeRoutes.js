@@ -6,24 +6,24 @@ const withAuth = require('../utils/auth');
 
 // Need to implement Genres here
 
-// GET all reviews -> main
+// GET all tv shows -> main
 router.get('/', async (req, res) => {
   console.log(res);
-  await Review.findAll({
-    attributes: [
-        'id',
-        'comment',
-        'created_at'
-    ],
+  await TVShow.findAll({
+    attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
+    "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+    "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+    "production_countries", "episode_run_time"],
     include: [{
-            model: TVShow,
-            attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
-              "production_countries", "episode_run_time"],
+            model: Review,
+              attributes: [
+                'id',
+                'comment',
+                'created_at'
+            ],
             include: {
                 model: User,
-                attributes: ['username']
+                attributes: ['email']
             }
         },
     ]
@@ -45,25 +45,25 @@ router.get('/reviews/:id', async (req, res) => {
     where: {
         id: req.params.id
     },
-    attributes: [
-        'id',
-        'comment',
-        'created_at'
-    ],
+    attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
+    "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+    "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+    "production_countries", "episode_run_time"],
     include: [{
-            model: TVShow,
-            attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
-              "production_countries", "episode_run_time"],
+            model: Review,
+            attributes: [
+              'id',
+              'comment',
+              'created_at'
+          ],
             include: {
                 model: User,
-                attributes: ['username']
+                attributes: ['email']
             }
         },
         {
             model: User,
-            attributes: ['username']
+            attributes: ['email']
         }
     ]
 })

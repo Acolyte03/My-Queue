@@ -36,7 +36,7 @@ Link to the website: ---- </br>
 ---Insert stuff here---
 
 ## Credits
-Made by Aeryk Andrews, Allie Stewart, Chris Valada, and Devon Capps. </br>
+Made by Aeryk Andrews, Allie Stewart, Chris Valada, and Devan Capps. </br>
 
 ## Licenses
 Please refer to the LICENSE in the repository. </br>

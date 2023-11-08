@@ -60,6 +60,6 @@ app.use(routes);
 //   console.log('Connected to the database');
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log(`Now listening on port http://localhost:${PORT}!`));
 });
 //});

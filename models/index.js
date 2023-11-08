@@ -8,9 +8,14 @@ const Watchlist = require('./Watchlist');
 //     // foreignKey: 'user_id'
 // });
 
-Genre.hasMany(TVShow, {
-    // foreignKey: 'tv_show_id'
-});
+TVShow.belongsTo(Genre);
+
+Genre.hasMany(TVShow);
+
+TVShow.hasMany(Review, {
+    foreignKey: 'tv_show_id',
+    onDelete: 'CASCADE'
+})
 
 // Review.belongsTo(User, {
 //     // foreignKey: 'user_id',

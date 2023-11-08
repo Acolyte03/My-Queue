@@ -20,6 +20,7 @@ Watchlist.init(
           model: 'user',
           key: 'id',
         },
+        unique: false,
     },
     tv_show_id: {
         type: DataTypes.INTEGER,
@@ -27,6 +28,7 @@ Watchlist.init(
           model: 'tvshow',
           key: 'id',
         },
+        unique: false,
     },
 },
 {

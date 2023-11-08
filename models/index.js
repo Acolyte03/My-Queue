@@ -5,12 +5,17 @@ const Review = require('./Review');
 const Watchlist = require('./Watchlist');
 
 User.hasMany(Review, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
 });
 
-Genre.hasMany(TVShow, {
-    foreignKey: 'tv_show_id'
-});
+TVShow.belongsTo(Genre);
+
+Genre.hasMany(TVShow);
+
+TVShow.hasMany(Review, {
+    foreignKey: 'tv_show_id',
+    onDelete: 'CASCADE'
+})
 
 Review.belongsTo(User, {
     foreignKey: 'user_id',

@@ -41,10 +41,6 @@ TVShow.init(
         },
         genres: {
             type: DataTypes.STRING,
-            references: {
-                model: 'genre',
-                key: 'id',
-            }
         },
         created_by: {
             type: DataTypes.STRING,

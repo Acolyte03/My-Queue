@@ -23,17 +23,15 @@ router.get('/:id', async (req, res) => {
               id: req.params.id
           },
           include: [{
-                  model: Post,
-                  attributes: [
-                      'id',
-                      'title',
-                      'content',
-                      'created_at'
-                  ]
+                  model: TVShow,
+                  attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
+              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
+              "production_countries", "episode_run_time"],
               },
               {
                   model: Review,
-                  attributes: ['id', 'comment', 'created_at'],
+                  attributes: ['id', 'title', 'comment', 'created_at'],
                   include: {
                       model: TVShow,
                       attributes: ['name']

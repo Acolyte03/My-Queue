@@ -4,11 +4,13 @@ const router = require('express').Router();
 
 const apiRoutes = require('./api');
 const homeRoutes = require('./homeRoutes');
-const dashRoutes = require('./dashboardRoutes.js');
+const reviewsRoutes = require('./reviewsRoutes');
+const tvshowsViewRoutes = require('./tvShowsViewRoutes');
 
 router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
-router.use('/dashboard', dashRoutes);
+router.use('/reviews', reviewsRoutes);
+router.use('/tvshows', tvshowsViewRoutes);
 // Routes are based on Views + User logged in or not
 
 module.exports = router;

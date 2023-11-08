@@ -41,16 +41,27 @@ TVShow.init(
         },
         genres: {
             type: DataTypes.STRING,
-            // references: {
-            //     model: 'genre',
-            //     key: 'id',
-            // }
         },
         created_by: {
             type: DataTypes.STRING,
         },
         networks: {
             type: DataTypes.STRING,
+        },
+        origin_country: {
+            type: DataTypes.STRING,
+        }, 
+        spoken_languages: {
+            type: DataTypes.STRING,
+        }, 
+        production_companies: {
+            type: DataTypes.STRING,
+        }, 
+        production_countries: {
+            type: DataTypes.STRING,
+        }, 
+        episode_run_time: {
+            type: DataTypes.INTEGER,
         }
     },
     {

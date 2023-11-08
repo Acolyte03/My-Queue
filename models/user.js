@@ -16,15 +16,11 @@ User.init(
         primaryKey: true,
         autoIncrement: true,
       },
-<<<<<<< HEAD
       name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       email: {
-=======
-      username: {
->>>>>>> 0d2ff2c61d2de50da7201ec9fdacc92698cc4ecd
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,

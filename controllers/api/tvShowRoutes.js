@@ -1,5 +1,7 @@
+// Start of JS file
+// TVShowRoutes for GET, POST, PUT, DELETE of TV shows.
 const router = require('express').Router();
-const { TVShow, Watchlist } = require('../../models');
+const { TVShow } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET all TV shows?...
@@ -26,13 +28,24 @@ router.get('/:id', async (req, res) => {
         })
 });
 
-// CREATE TV show... Watchlist?
+// CREATE TV show?
 router.post('/', withAuth, async (req, res) => {
     if (req.session) {
-        await Watchlist.create({
-                name: req.body.name,
-                tv_show_id: req.body.tv_show_id,
-                user_id: req.session.user_id,
+        await TVShow.create({
+            id: req.body.id,
+            name: req.body.name,
+            number_of_seasons: req.body.number_of_seasons,
+            number_of_episodes: req.body.number_of_episodes,
+            vote_count: req.body.vote_count,
+            vote_average: req.body.vote_average,
+            overview: req.body.overview,
+            homepage: req.body.homepage,
+            in_production: req.body.in_production,
+            popularity: req.body.popularity,
+            tagline: req.body.tagline,
+            genres: req.body.genres,
+            created_by: req.body.created_by,
+            networks: req.body.networks
             })
             .then(tvShowData => res.json(tvShowData))
             .catch(err => {
@@ -42,17 +55,17 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
-// UPDATE TV show (in watchlist)
+// UPDATE TV show
 router.put('/:id', withAuth, async (req, res) => {
     await TVShow.update({
-        name: req.body.name // may need to adjust
+        name: req.body.name
     }, {
         where: {
             id: req.params.id
         }
     }).then(tvShowData => {
         if (!tvShowData) {
-            res.status(404).json({ message: 'No tv show found with this id.' });
+            res.status(404).json({ message: 'No TV show found with this id.' });
             return;
         }
         res.json(tvShowData);
@@ -62,15 +75,15 @@ router.put('/:id', withAuth, async (req, res) => {
     });
 });
 
-// DELETE TV show by id (in watchlist)
+// DELETE TV show by id
 router.delete('/:id', withAuth, async (req, res) => {
-    await Watchlist.destroy({
+    await TVShow.destroy({
         where: {
-            tv_show_id: req.params.tv_show_id
+            id: req.params.id
         }
     }).then(tvShowData => {
         if (!tvShowData) {
-            res.status(404).json({ message: 'No tv show found with this id.' });
+            res.status(404).json({ message: 'No TV show found with this id.' });
             return;
         }
         res.json(tvShowData);
@@ -81,3 +94,4 @@ router.delete('/:id', withAuth, async (req, res) => {
 });
 
 module.exports = router;
+// End of JS file

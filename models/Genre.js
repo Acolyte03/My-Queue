@@ -16,7 +16,7 @@ Genre.init(
             allowNull: false,
         },
         description: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
         },
         tv_show_id: {
             type: DataTypes.INTEGER,

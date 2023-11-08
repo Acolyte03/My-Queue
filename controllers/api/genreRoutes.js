@@ -1,39 +1,28 @@
+// Start of JS file
+// GenreRoutes for GET, POST, PUT, DELETE of genres.
 const router = require('express').Router();
 const { Genre, TVShow } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET all genres
 router.get('/', async (req, res) => {
-      await Genre.findAll( 
-      {
-        // attributes: ["id", "genre_name"],
-        // include: [{
-        //   model: TVShow,
-        //   attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-        // "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-        // "genres", "created_by", "networks"]
-        // }]
-      }).then((genres) => {
-        res.json(genres);
-      }).catch ((err) =>
+      await Genre.findAll({})
+      .then(genreData =>  res.json(genreData))
+      .catch (err =>
     {
+      console.log(err);
       res.status(500).json(err);
     });
   });
   
-  // GET genre by id
-  router.get('/:id', async (req, res) => {
-      await Genre.findByPk(req.params.id, 
-      {
-        // attributes: ["id", "genre_name"],
-        // include: [
-        //   { 
-        //     model: TVShow,
-        //     attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-        // "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-        // "genres", "created_by", "networks"]
-        //   }],
-      }).then((genreData) => {
+// GET genre by id
+router.get('/:id', async (req, res) => {
+      await Genre.findAll({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(genreData => {
         if (!genreData) 
         {
           res.status(404).json({ message: 'No genre found with this id!' });
@@ -41,56 +30,71 @@ router.get('/', async (req, res) => {
         }
         res.json(genreData);
   
-      }).catch((err) =>
-    {
-      res.status(500).json(err);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
     });
   });
   
-//   // CREATE new genre?
-//   router.post('/', async (req, res) => {
-//       await Genre.create(
-//       {
-//         genre_name: req.body.category_name
-//       }).then(newGenreData => res.json(newGenreData))
-//     .catch((err) => {
-//       res.status(400).json(err);
-//     });
-//   });
+// CREATE new genre?
+router.post('/', withAuth, async (req, res) => {
+    if (req.session) {
+      await Genre.create(
+      {
+        genre_name: req.body.genre_name,
+        description: req.body.description,
+        tv_show_id: req.body.tv_show_id
+      })
+      .then(genreData => res.json(genreData))
+      .catch((err) => {
+        console.log(err);
+        res.status(400).json(err);
+    });
+  }
+});
   
-  // UPDATE genre by id
-  router.put('/:id', async (req, res) => {
-    await Genre.update(req.body, {
+// UPDATE genre by id
+router.put('/:id', withAuth, async (req, res) => {
+    await Genre.update(
+      {
+        genre_name: req.body.genre_name,
+        description: req.body.description
+      }, {
       where: {
         id: req.params.id,
       },
     })
-      .then((genre) => {
-        res.json(genre);
-      })
-      .catch((err) => {
+      .then(genreData => {
+        if (!genreData) {
+          res.status(404).json({ message: 'No genre found with this id.'});
+          return;
+      }
+        res.json(genreData);
+      }).catch(err => {
+        console.log(err);
         res.status(400).json(err);
       });
-  });
+});
   
-//   // DELETE genre?
-//   router.delete('/:id', async (req, res) => {
-//      await Genre.destroy(
-//       {
-//         where: {
-//           id: req.params.id,
-//         },
-//       }).then((genreData) => {
-//         if (!genreData) 
-//         {
-//           res.status(404).json({ message: 'No genre found with that id!' });
-//           return;
-//         }
-//         res.json(genreData);
-//       }).catch((err) =>
-//     {
-//       res.status(400).json(err);
-//     });
-//   });
+// DELETE genre?
+router.delete('/:id', withAuth, async (req, res) => {
+     await Genre.destroy(
+      {
+        where: {
+          id: req.params.id,
+        },
+      }).then((genreData) => {
+        if (!genreData) 
+        {
+          res.status(404).json({ message: 'No genre found with this id.' });
+          return;
+        }
+        res.json(genreData);
+      }).catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+});
 
 module.exports = router;

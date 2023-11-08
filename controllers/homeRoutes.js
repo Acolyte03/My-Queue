@@ -1,87 +1,163 @@
+// Start of JS file
+// Home page routes. For someone NOT logged in to view.
 const router = require('express').Router();
-const { Genre, User, Review, TVShow, Watchlist } = require('../models');
+const { Genre, User, Review, TVShow } = require('../models');
 const withAuth = require('../utils/auth');
 
-// GET all Watchlist(s) for logged-in User
+// Need to implement Genres here
+
+// GET all reviews -> homepage
 router.get('/', async (req, res) => {
-  try {
-    const watchlistData = await Watchlist.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-        {
+  await Review.findAll({
+    attributes: [
+        'id',
+        'comment',
+        'created_at'
+    ],
+    include: [{
             model: TVShow,
-            attributes: ['name'], // may need more attributes here
+            attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
+              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+              "genres", "created_by", "networks"],
+            include: {
+                model: User,
+                attributes: ['username']
+            }
         },
-      ],
-    });
-
-    // Serialize data so the template can read it
-    const watchlists = watchlistData.map((watchlist) => watchlist.get({ plain: true }));
-
-    // Pass serialized data and session flag into template
-    res.render('main', { 
-      watchlists, 
-      logged_in: req.session.logged_in 
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// GET TVShows by id? Hmm...
-router.get('/tvshows/:id', async (req, res) => {
-  try {
-    const tvShowData = await TVShow.findByPk(req.params.id, {
-      include: [
         {
-          model: User,
-          attributes: ['name'], // may need adjusting
+            model: User,
+            attributes: ['username']
+        }
+    ]
+})
+.then(reviewData => {
+    const reviews = reviewData.map(review => review.get({ plain: true }));
+    res.render('homepage', { reviews, loggedIn: req.session.loggedIn });
+})
+.catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+});
+});
+
+// GET reviews by id -> single-review
+router.get('/reviews/:id', async (req, res) => {
+  await Review.findOne({
+    where: {
+        id: req.params.id
+    },
+    attributes: [
+        'id',
+        'comment',
+        'created_at'
+    ],
+    include: [{
+            model: TVShow,
+            attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
+              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+              "genres", "created_by", "networks"],
+            include: {
+                model: User,
+                attributes: ['username']
+            }
         },
-      ],
-    });
-
-    const tvshows = tvShowData.get({ plain: true });
-
-    res.render('tvshow', {
-      ...tvshows,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
+        {
+            model: User,
+            attributes: ['username']
+        }
+    ]
+})
+.then(reviewData => {
+    if (!reviewData) {
+        res.status(404).json({ message: 'No review found with this id.' });
+        return;
+    }
+    const review = reviewData.get({ plain: true });
+    console.log(review);
+    res.render('single-review', { review, loggedIn: req.session.loggedIn });
+})
+.catch(err => {
+    console.log(err);
     res.status(500).json(err);
-  }
+});
 });
 
-// Use withAuth middleware to prevent access to route
-router.get('/profile', withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Watchlist }],
+// GET reviews for tv shows -> reviews-shows
+router.get('/reviews-shows', async (req, res) => {
+  await Review.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'comment',
+            'created_at'
+        ],
+        include: [{
+                model: TVShow,
+                attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
+              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
+              "genres", "created_by", "networks"],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+    .then(reviewData => {
+        if (!reviewData) {
+            res.status(404).json({ message: 'No review found with this id.' });
+            return;
+        }
+        const review = reviewData.get({ plain: true });
+        res.render('reviews-shows', { review, loggedIn: req.session.loggedIn });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
     });
-
-    const user = userData.get({ plain: true });
-
-    res.render('profile', {
-      ...user,
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
 });
 
+// Not sure if we need this yet, maybe for a look to a watchlist?
+// Would have to go in /dashboardRoutes
+// // Use withAuth middleware to prevent access to route
+// router.get('/profile', withAuth, async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ['password'] },
+//       include: [{ model: Watchlist }],
+//     });
+
+//     const user = userData.get({ plain: true });
+
+//     res.render('profile', {
+//       ...user,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// GET login route -> login
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/');
     return;
   }
-
   res.render('login');
 });
 
+// GET signup -> signup page
+router.get('/signup', (req, res) => {
+  res.render('signup');
+});
+
 module.exports = router;
+// End of JS file

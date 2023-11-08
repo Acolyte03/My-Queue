@@ -1,3 +1,5 @@
+// Start of JS file
+// Index for routes.
 const router = require('express').Router();
 const tvShowRoutes = require('./tvShowRoutes');
 const genreRoutes = require('./genreRoutes');
@@ -11,3 +13,4 @@ router.use('/reviews', reviewRoutes);
 // Routes are based on Models 
 
 module.exports = router;
+// End of JS file

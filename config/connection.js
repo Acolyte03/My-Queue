@@ -1,3 +1,5 @@
+// Start of JS file
+// Connection using Sequelize.
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
@@ -19,3 +21,4 @@ if (process.env.JAWSDB_URL) {
 }
 
 module.exports = sequelize;
+// End of JS file

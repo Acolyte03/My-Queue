@@ -1,4 +1,4 @@
-const User = require('./User');
+const User = require('./user');
 const TVShow = require('./TVShow');
 const Genre = require('./Genre');
 const Review = require('./Review');

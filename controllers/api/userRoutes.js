@@ -1,7 +1,7 @@
 // Start of JS file
 // UserRoutes for GET, POST, PUT, DELETE of users.
 const router = require('express').Router();
-const { User, Review, TVShow } = require('../../models');
+const { User, Review, Watchlist } = require('../../models');
 
 // GET all users
 router.get('/', async (req, res) => {
@@ -23,22 +23,19 @@ router.get('/:id', async (req, res) => {
               id: req.params.id
           },
           include: [{
-                  model: TVShow,
-                  attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
-              "production_countries", "episode_run_time"],
+                  model: Watchlist,
+                  attributes: ['id', 'name'],
               },
               {
                   model: Review,
                   attributes: ['id', 'title', 'comment', 'created_at'],
                   include: {
-                      model: TVShow,
+                      model: Watchlist,
                       attributes: ['name']
                   }
               },
               {
-                  model: TVShow,
+                  model: Watchlist,
                   attributes: ['name'],
               }
           ]
@@ -59,12 +56,12 @@ router.get('/:id', async (req, res) => {
 // CREATE new user
 router.post('/', async (req, res) => {
   await User.create({
-      username: req.body.username,
+      email: req.body.email,
       password: req.body.password
   }).then(userData => {
           req.session.save(() => {
               req.session.user_id = userData.id;
-              req.session.username = userData.username;
+              req.session.email = userData.email;
               req.session.loggedIn = true;
 
               res.json(userData);
@@ -79,12 +76,12 @@ router.post('/', async (req, res) => {
 // CREATE login session
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { username: req.body.username } });
+    const userData = await User.findOne({ where: { emaile: req.body.email } });
 
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect username or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
@@ -93,13 +90,13 @@ router.post('/login', async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect username or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
     req.session.save(() => {
       req.session.user_id = userData.id;
-      req.session.username = userData.username;
+      req.session.email = userData.email;
       req.session.logged_in = true;
       
       res.json({ user: userData, message: 'You are now logged in!' });

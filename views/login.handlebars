@@ -1,15 +1,15 @@
 <div class="row">
     <div class="col-md-6 offset-md-3">
         <h2 class="text-center">Login</h2>
-        <form action="/login" method="POST">
+        <form action="/login" id="login-form" method="POST">
             <div class="mb-3">
                 <label for="inputEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" required>
+                <input type="email" class="form-control" id="email-login" name="email" aria-describedby="emailHelp" required>
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
                 <label for="inputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword" name="password" required>
+                <input type="password" class="form-control" id="password-login" name="password" required>
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="rememberMe">
@@ -27,3 +27,5 @@
         </p>
     </div>
 </div>
+
+<script src="/js/login.js"></script>

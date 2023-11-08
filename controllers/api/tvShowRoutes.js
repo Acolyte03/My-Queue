@@ -1,5 +1,5 @@
 // Start of JS file
-// TVShowRoutes for GET, POST, PUT, DELETE of TV shows.
+// TVShowRoutes for GET of TV shows.
 const router = require('express').Router();
 const { TVShow } = require('../../models');
 const withAuth = require('../../utils/auth');

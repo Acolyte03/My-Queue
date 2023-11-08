@@ -159,9 +159,5 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-// router.get('/main', (req, res) => {
-//   res.render('main');
-// });
-
 module.exports = router;
 // End of JS file

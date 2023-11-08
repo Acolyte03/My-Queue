@@ -1,5 +1,5 @@
 // Start of JS file
-// GenreRoutes for GET, POST, PUT, DELETE of genres.
+// GenreRoutes for GET of genres.
 const router = require('express').Router();
 const { Genre } = require('../../models');
 
@@ -14,27 +14,27 @@ router.get('/', async (req, res) => {
     });
   });
   
-// GET genre by id
-router.get('/:id', async (req, res) => {
-      await Genre.findAll({
-        where: {
-            id: req.params.id
-        }
-    })
-    .then(genreData => {
-        if (!genreData) 
-        {
-          res.status(404).json({ message: 'No genre found with this id!' });
-          return;
-        }
-        res.json(genreData);
+// // GET genre by id
+// router.get('/:id', async (req, res) => {
+//       await Genre.findAll({
+//         where: {
+//             id: req.params.id
+//         }
+//     })
+//     .then(genreData => {
+//         if (!genreData) 
+//         {
+//           res.status(404).json({ message: 'No genre found with this id!' });
+//           return;
+//         }
+//         res.json(genreData);
   
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-  });
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+//   });
   
 // // CREATE new genre?
 // router.post('/', withAuth, async (req, res) => {
@@ -97,3 +97,4 @@ router.get('/:id', async (req, res) => {
 // });
 
 module.exports = router;
+// End of JS file

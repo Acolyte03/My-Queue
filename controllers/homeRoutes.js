@@ -8,32 +8,29 @@ const withAuth = require('../utils/auth');
 
 // GET all tv shows -> main
 router.get('/', async (req, res) => {
-  console.log(res);
-  await TVShow.findAll({
-    attributes: ["id","name", "vote_average", "overview", "in_production", "popularity", "tagline", "genres"],
-    include: [{
+    try {
+  const tvShows = await TVShow.findAll({
+    // attributes: ["id","name", "vote_average", "overview", "in_production", "popularity", "tagline", "genres"],
+    include: {
             model: Review,
               attributes: [
-                'id',
-                'comment',
-                'created_at'
+                'title',
+                'comment'
             ],
-            include: {
-                model: User,
-                attributes: ['email']
-            }
-        },
-    ]
-})
-.then(tvData => {
+            },
+    include: {
+        model: Genre
+    }
+        // }).then(tvData => {
     //console.log('test: ', reviewData);
-    const tvshows = tvData.map(tvshow => tvshow.get({ plain: true }));
-    res.render('main', {tvshows, loggedIn: req.session.loggedIn});
-})
-.catch(err => {
+    // const tvshows = tvData.map(tvshow => tvshow.get({ plain: true }));
+                            // loggedIn: req.session.loggedIn
+        });
+    res.render('homepage', { tvShows });
+}catch(err) {
     console.log(err);
     res.status(500).json(err);
-});
+}
 });
 
 // GET reviews by id -> single-review
@@ -47,8 +44,7 @@ router.get('/tvshows/:id', async (req, res) => {
             model: Review,
             attributes: [
               'id',
-              'comment',
-              'created_at'
+              'comment'
           ],
             include: {
                 model: User,
@@ -85,7 +81,6 @@ router.get('/reviews-shows', async (req, res) => {
         attributes: [
             'id',
             'comment',
-            'created_at'
         ],
         include: [{
                 model: TVShow,

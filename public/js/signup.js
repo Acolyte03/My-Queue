@@ -1,3 +1,5 @@
+// Start of JS file
+// Sign-up page.
 const signupFormHandler = async (event) => {
     event.preventDefault();
   
@@ -22,3 +24,4 @@ const signupFormHandler = async (event) => {
 document
 .querySelector('#signup-form')
 .addEventListener('submit', signupFormHandler);
+// End of JS file

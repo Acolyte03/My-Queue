@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 .then(tvData => {
     //console.log('test: ', reviewData);
     const tvshows = tvData.map(tvshow => tvshow.get({ plain: true }));
-    res.render('layouts/main', {tvshows, loggedIn: req.session.loggedIn});
+    res.render('main', {tvshows, loggedIn: req.session.loggedIn});
 })
 .catch(err => {
     console.log(err);

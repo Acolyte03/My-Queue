@@ -13,8 +13,7 @@ router.get('/', withAuth, async (req, res) => {
             },
             attributes: [
                 'id',
-                'comment',
-                'created_at'
+                'comment'
             ],
             include: [{
                     model: TVShow,
@@ -50,8 +49,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
                 id: req.params.id
             },
             attributes: ['id',
-                'comment',
-                'created_at'
+                'comment'
             ],
             include: [{
                     model: User,

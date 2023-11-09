@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
               },
               {
                   model: Review,
-                  attributes: ['id', 'title', 'comment', 'created_at'],
+                  attributes: ['id', 'title', 'comment'],
                   include: {
                       model: Watchlist,
                       attributes: ['name']
@@ -76,7 +76,7 @@ router.post('/', async (req, res) => {
 // CREATE login session
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { emaile: req.body.email } });
+    const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {
       res

@@ -10,10 +10,7 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   console.log(res);
   await TVShow.findAll({
-    attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-    "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-    "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
-    "production_countries", "episode_run_time"],
+    attributes: ["id","name", "vote_average", "overview", "in_production", "popularity", "tagline", "genres"],
     include: [{
             model: Review,
               attributes: [
@@ -28,10 +25,10 @@ router.get('/', async (req, res) => {
         },
     ]
 })
-.then(reviewData => {
-    console.log('test: ', reviewData);
-    const reviews = reviewData.map(review => review.get({ plain: true }));
-    res.render('layouts/main', {reviews, loggedIn: req.session.loggedIn});
+.then(tvData => {
+    //console.log('test: ', reviewData);
+    const tvshows = tvData.map(tvshow => tvshow.get({ plain: true }));
+    res.render('layouts/main', {tvshows, loggedIn: req.session.loggedIn});
 })
 .catch(err => {
     console.log(err);
@@ -40,15 +37,12 @@ router.get('/', async (req, res) => {
 });
 
 // GET reviews by id -> single-review
-router.get('/reviews/:id', async (req, res) => {
-  await Review.findOne({
+router.get('/tvshows/:id', async (req, res) => {
+  await TVShow.findOne({
     where: {
         id: req.params.id
     },
-    attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-    "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-    "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
-    "production_countries", "episode_run_time"],
+    attributes: ["id","name", "vote_average", "overview", "in_production", "popularity", "tagline", "genres"],
     include: [{
             model: Review,
             attributes: [
@@ -67,14 +61,14 @@ router.get('/reviews/:id', async (req, res) => {
         }
     ]
 })
-.then(reviewData => {
-    if (!reviewData) {
-        res.status(404).json({ message: 'No review found with this id.' });
+.then(tvData => {
+    if (!tvData) {
+        res.status(404).json({ message: 'No TV show found with this id.' });
         return;
     }
-    const review = reviewData.get({ plain: true });
-    console.log(review);
-    res.render('single-review', { review, loggedIn: req.session.loggedIn });
+    const tvshow = tvData.get({ plain: true });
+    console.log(tvshow);
+    res.render('single-show', { tvshow, loggedIn: req.session.loggedIn });
 })
 .catch(err => {
     console.log(err);
@@ -95,10 +89,7 @@ router.get('/reviews-shows', async (req, res) => {
         ],
         include: [{
                 model: TVShow,
-                attributes: ["id","name", "number_of_seasons", "number_of_episodes", "vote_count",
-              "vote_average", "overview", "homepage", "in_production", "popularity", "tagline", 
-              "genres", "created_by", "networks", "origin_country", "spoken_languages","production_companies",
-              "production_countries", "episode_run_time"],
+                attributes: ["id","name", "vote_average", "overview", "in_production", "popularity", "tagline", "genres"],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -122,27 +113,6 @@ router.get('/reviews-shows', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
-});
-
-// Watchlist attached to user?
-// Use withAuth middleware to prevent access to route
-router.get('/watchlist', withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Watchlist }],
-    });
-
-    const user = userData.get({ plain: true });
-
-    res.render('watchlist', {
-      ...user,
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
 });
 
 // GET login route -> login

@@ -1,0 +1,22 @@
+{{!-- Start of Handlebar file --}}
+{{> tvshowCard tvshow}}
+
+{{#if loggedIn}}
+<div class="card">
+    <h3 class="card-header"></h3>
+    <form class="card-body review-form" id="review-form">
+
+        <label class="form-label">Review</label>
+        <input id="review" name="review-body" class="form-input" />
+
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>
+{{/if}}
+
+{{> reviews tvshow.reviews}}
+
+{{#if loggedIn}}
+<script src="/js/review.js"></script>
+{{/if}}
+{{!-- End of Handlebar file --}}

@@ -10,11 +10,13 @@ adding them to a watch list, and viewing other users' comments about the show. <
 ![License: MIT](https://img.shields.io/badge/HTML5-red.svg)
 ![License: MIT](https://img.shields.io/badge/CSS-purple.svg)
 ![License: MIT](https://img.shields.io/badge/Handlebars-orange.svg)
-![License: MIT](https://img.shields.io/badge/Tailwind-grey.svg)
+![License: MIT](https://img.shields.io/badge/Tailwind-blue.svg)
 ![License: MIT](https://img.shields.io/badge/Node.js-grey.svg)
 ![License: MIT](https://img.shields.io/badge/Express.js-grey.svg)
 ![License: MIT](https://img.shields.io/badge/MySQL-purple.svg)
 ![License: MIT](https://img.shields.io/badge/Heroku-purple.svg)
+![License: MIT](https://img.shields.io/badge/Sequelize-purple.svg)
+![License: MIT](https://img.shields.io/badge/GSAP-purple.svg)
 
 ## Table of Contents
 - [Description](#description)

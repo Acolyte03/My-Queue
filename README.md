@@ -28,7 +28,8 @@ adding them to a watch list, and viewing other users' comments about the show. <
 </br>
 
 ## Screenshots
----Insert stuff here--- </br> 
+Login Page
+![login page](public/images/readme_screenshots/login.png)</br> 
 
 ## Usage
 Simply click on the link and watch the magic happen. </br>  

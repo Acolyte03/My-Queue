@@ -22,21 +22,34 @@ adding them to a watch list, and viewing other users' comments about the show. <
 - [Description](#description)
 - [Screenshots](#screenshots)
 - [Usage](#usage)
-- [What We Have Learned](#what-i-have-learned)
+- [What We Have Learned](#what-we-have-learned)
 - [Credits](#credits)
 - [Licenses](#licenses)
 </br>
 
 ## Screenshots
-Login Page
-![login page](public/images/readme_screenshots/login.png)</br> 
+----Home Page----
+![Alt text](readme_screenshots/homepage.png)
+
+----Login Page----
+![Alt text](readme_screenshots/login-signup.png)
+
+----Browsing----
+![Alt text](readme_screenshots/browse_page.png)
 
 ## Usage
 Simply click on the link and watch the magic happen. </br>  
-Link to the website: ---- </br>
+Link to the website: https://my-queue-proj2-17f6449399b4.herokuapp.com </br>
 
 ## What We Have Learned
----Insert stuff here---
+We've learned about full-stack application creation, with regards to </br>
+frontend (Views: using .handlebars, setting up public/css styling and </br>
+public/js functions) and backend (Models: creating relationships </br>
+between tables and values, Controllers: managing /api routes that execute actions </br>
+and base routes that render .handlebar pages, and seeds to seed SQL database). </br>
+Getting everything in working order and more, was a difficult task in of itself. </br>
+Moving forward, we're more confident in our abilities to create these more </br>
+detailed applications for future projects. </br>
 
 ## Credits
 Made by Aeryk Andrews, Allie Stewart, Chris Valada, and Devan Capps. </br>

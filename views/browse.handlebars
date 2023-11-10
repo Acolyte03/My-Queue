@@ -1,35 +1,16 @@
-<h2>Browse TV Shows</h2>
-<div id="tvShowsContainer" class="row">
-    {{#each tvShows as |show|}}
-        {{> tvshowCard show}}
-    {{/each}}
-</div>
+<h1>Browse TV Shows</h1>
+     <p>Note: you are viewing browse.handlebars</p>
 
-<script>
-// This is meant to handle the 'Add to Watchlist' functionality
-// Attach event listeners once the DOM is fully loaded
-document.addEventListener('ContentLoaded', function() {
-    document.querySelectorAll('.addToWatchlist').forEach(button => {
-        button.addEventListener('click', function(event) {
-            const tvShowId = event.target.getAttribute('data-id');
-            // This is where we would add our POST request to your server
-            fetch('/api/addToWatchlist', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ tvShowId: tvShowId }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle response data, like updating the UI to reflect the added show
-                console.log('TV show added to watchlist:', data);
-            })
-            .catch(error => {
-                // Handle any errors here
-                console.error('Error adding TV show to watchlist:', error);
-            });
-        });
-    });
-});
-</script>
+{{#if tvshows.length}}
+  <div class="tvshow-list">
+    {{#each tvshows}}
+      <div class="tvshow">
+        <h2>{{this.name}}</h2>
+        <!-- Add more properties as needed -->
+        <p>{{this.overview}}</p>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <p>No TV shows found.</p>
+{{/if}}

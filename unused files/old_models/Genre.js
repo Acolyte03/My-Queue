@@ -19,4 +19,4 @@ Genre.init(
     }
 );
       
-module.exports = Genre; 
+module.exports = Genre;

@@ -34,6 +34,9 @@ adding them to a watch list, and viewing other users' comments about the show. <
 ----Login Page----
 ![Alt text](readme_screenshots/login-signup.png)
 
+---Watchlist Page---
+![Alt text](readme_screenshots/watchlist_page.png)
+
 ----Browsing----
 ![Alt text](readme_screenshots/browse_page.png)
 
